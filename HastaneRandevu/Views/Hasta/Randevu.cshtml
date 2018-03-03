@@ -1,0 +1,195 @@
+@model HastaneRandevu.ViewModels.HastaRandevu
+@{
+    ViewBag.Title = "Randevu";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#drpil").change(function () {
+            $("#drpilce").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Ilceler")',
+
+                dataType: 'json',
+
+                data: { il_id: $("#drpil").val() },
+
+                
+                success: function (item) {
+
+                    $.each(item, function (i, item) {
+                        $("#drpilce").append('<option value="' + item.Value + '">' +
+                         item.Text + '</option>');
+
+
+                    });
+                },
+                error: function (ex) {
+                    
+                    alert('Hata Olustu.!' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#drpilce").change(function () {
+            $("#drphastane").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Hastaneler")',
+
+                dataType: 'json',
+
+                data: { ilce_id: $("#drpilce").val() },
+
+
+                success: function (item) {
+
+                    $.each(item, function (i, item) {
+                        $("#drphastane").append('<option value="' + item.Value + '">' +
+                         item.Text + '</option>');
+
+
+                    });
+                },
+                error: function (ex) {
+
+                    alert('Hata Olustu.!' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#drpklinik").change(function () {
+            
+            $("#drphekim").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Hekimler")',
+
+                dataType: 'json',
+
+                data: { hastane_id: $("#drphastane").val(), klinik_id: $("#drpklinik").val() },
+
+
+                success: function (item) {
+
+                    $.each(item, function (i, item) {
+                        $("#drphekim").append('<option value="' + item.Value + '">' +
+                         item.Text + '</option>');
+
+
+                    });
+                },
+                error: function (ex) {
+
+                    alert('Hata Olustu.!' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#drphekim").change(function () {
+
+            $("#drpsaat").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Saatler")',
+
+                dataType: 'json',
+
+                data: { hekim_id: $("#drphekim").val() },
+
+
+                success: function (item) {
+
+                    $.each(item, function (i, item) {
+                        $("#drpsaat").append('<option value="' + item.Value + '">' +
+                         item.Text + '</option>');
+
+
+                    });
+                },
+                error: function (ex) {
+
+                    alert('Hata Olustu.!' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+<script type="text/javascript">
+    $(function () { // will trigger when the document is ready
+       $('.datepicker').datepicker(); //Initialise any date pickers
+    });
+</script>
+
+<div class="container" style= "margin: 0 auto; width:330px;">
+    <h1 class="text-center">Randevu Ekrani</h1>
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">Hosgeldiniz,</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                           <span class="h4">Tarih</span><br />
+                            @Html.TextBoxFor(x => x.Tarih, new { @class = "form-control datepicker", placeholder = "Tarih Secmek icin Týklayýn" })
+                        </div>
+                        <div class="form-group">
+                            <span class="h4">Ýl</span><br />
+                            @Html.DropDownList("drpil", ViewData["ilAdi"] as IEnumerable<SelectListItem>, "Ýl Secin", new { @class = "dropdownlist-1 form-control" })
+                        </div>
+                        <div class="form-group">
+                            <span class="h4">Ýlçe</span><br />
+                            @Html.DropDownList("drpilce", new SelectList(string.Empty, "Value", "Text"), "Ilce Secin", new {  @class = "dropdownlist-1 form-control" })
+                        </div>
+                        <div class="form-group">
+                            <span class="h4">Hastane</span><br />
+                            @Html.DropDownList("drphastane", new SelectList(string.Empty, "ID", "Name"), "Hastane Secin", new {  @class = "dropdownlist-1 form-control" })
+                        </div>
+                        <div class="form-group">
+                            <span class="h4">Klinik</span><br />
+                            @Html.DropDownList("drpklinik", ViewData["KlinikAdi"] as List<SelectListItem>, "Klinik Secin", new {  @class = "dropdownlist-1 form-control" })
+                        </div>
+                        <div class="form-group">
+                            <span class="h4">Hekim</span><br />
+                            @Html.DropDownList("drphekim", new SelectList(string.Empty, "HekimID", "Hekim"), "Hekim Secin", new {  @class = "dropdownlist-1 form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <span class="h4">Saat</span><br />
+                            @Html.DropDownList("drpsaat", new SelectList(string.Empty, "SaatID", "Saat"), "Saat Secin", new {  @class = "dropdownlist-1 form-control" })
+                        </div>
+                        <div class="btn-group">
+                            <input type="reset" value="Temizle" class="btn btn-primary btn-sm" />
+                        </div>
+                        <div class="btn-group">
+                            <input type="submit" value="Randevu Al" class="btn btn-primary btn-sm" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+    }
+</div>

@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin Paneli</title>
+    @Styles.Render("~/admin/styles")
+</head>
+<body>
+    <div class="container">
+        <a href="@Url.Action("", "Hesaplar", null, null)">Hesaplar</a>
+        <a href="@Url.Action("", "Hastaneler", null, null)">Hastaneler</a>
+        <a href="@Url.Action("", "Hekimler", null, null)">Doktorlar</a>
+    </div>
+   
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

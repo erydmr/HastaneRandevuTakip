@@ -1,0 +1,38 @@
+﻿@model HastaneRandevu.Areas.Admin.ViewModels.HekimIndex
+@{
+    ViewBag.Title = "Hekimler";
+}
+<h1>Users</h1>
+<a href="@Url.Action("Yeni")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i>Create User</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Hekim Adı</th>
+            <th>Hastane ID</th>
+            <th>Klinik ID</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hekim in Model.Hekimler)
+        {
+            <tr>
+                <td>@hekim.Id</td>
+                <td>@hekim.hekimAdi</td>
+                <td>@hekim.hastaneID</td> 
+                <td>@hekim.klinikID</td>
+                <td>@hekim.Email</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("duzenle",new { hekim.Id } )" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                        <a href="@Url.Action("parola",new { hekim.Id } )" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-lock"></i>Reset Password</a>
+                        <a href="@Url.Action("Sil",new { hekim.Id } )" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i>Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

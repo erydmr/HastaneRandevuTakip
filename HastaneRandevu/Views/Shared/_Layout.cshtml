@@ -1,0 +1,35 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Hastane Randevu</title>
+    @Styles.Render("~/styles")
+
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+    
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+
+</head>
+<body>
+    <header>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>Welcome back, @Auth.Hastalar.AdSoyad</p>
+
+            <a href="@Url.RouteUrl("Logout")">Çıkış Yap</a>
+
+            <a href="@Url.Action("Randevu", "Hasta")">Randevu almak için tıklayınız..</a>
+        }
+
+    </header>
+    @RenderBody()
+</body>
+</html>

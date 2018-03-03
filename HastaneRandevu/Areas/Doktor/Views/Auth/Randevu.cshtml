@@ -1,0 +1,33 @@
+﻿@model HastaneRandevu.Areas.Doktor.ViewModels.DoktorRandevu
+@{
+   
+    ViewBag.Title = "Randevular";
+}
+<h3>Doktor Paneli - Randevularım</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Hasta ID</th>
+            <th>Hekim ID :</th>
+            <th>Klinik ID</th>
+            <th>Saat</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var randevu in Model.Randevular)
+        {
+            <tr>
+                <td>@randevu.Id</td>
+                <td>@randevu.hastaId</td>
+                <td>@randevu.hekimId</td>
+                <td>@randevu.klinikId</td>
+                <td>@randevu.Saat</td>
+                <td>@randevu.Tarih</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

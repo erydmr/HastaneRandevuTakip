@@ -1,0 +1,36 @@
+﻿@model HastaneRandevu.Areas.Admin.ViewModels.UsersIndex
+@{
+    ViewBag.Title = "Hesaplar";
+}
+<h1>Users</h1>
+<a href="@Url.Action("New")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i>Create User</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.AdSoyad</td>
+                <td>@user.Email</td> 
+                <td>@user.Rol</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("edit",new { user.Id } )" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                        <a href="@Url.Action("resetPassword",new { user.Id } )" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-lock"></i>Reset Password</a>
+                        <a href="@Url.Action("Sil",new { user.Id } )" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i>Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿@model HastaneRandevu.Areas.Doktor.ViewModels.DoktorLogin
+@Styles.Render("~/admin/styles")
+@{
+    Layout = "";
+    ViewBag.Title = "Login";
+}
+<header>
+    <h1 class="text-center"> Doktor Girisi</h1>
+</header>
+
+<div style="margin: 0 auto; width:400px;">
+
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div>
+                @Html.ValidationSummary()
+                <div class="panel panel-info">
+                    <div class="panel-heading text-center">Lütfen Sisteme Giris Yapiniz..</div>
+                    <div class="panel-body">
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.Email)
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Sifre)
+                            @Html.PasswordFor(x => x.Sifre, new { @class = "form-control" })
+                        </div>
+
+                        <div class="btn-group alert-danger">
+                            <input type="reset" value="Temizle" class="btn btn-primary btn-sm" />
+                        </div>
+                        <div class="btn-group">
+                            <input type="submit" value="Giris Yap" class="btn btn-primary btn-sm" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

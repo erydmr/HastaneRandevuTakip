@@ -1,0 +1,41 @@
+﻿@model HastaneRandevu.ViewModels.HastaLogin
+
+@{ 
+    ViewBag.Title = "Anasayfa";
+}
+<header>
+    <h1 class="text-center">Hastane Randevu Sistemi</h1>
+</header>
+
+<div class="col-md-6 col-md-offset-4">
+
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-8">
+                @Html.ValidationSummary()
+                <div class="panel panel-info">
+                    <div class="panel-heading text-center">Lütfen Sisteme Giris Yapiniz..</div>
+                    <div class="panel-body">
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.TcKimlik)
+                            @Html.TextBoxFor(x => x.TcKimlik, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Sifre)
+                            @Html.PasswordFor(x => x.Sifre, new { @class = "form-control" })
+                        </div>
+                        <div class="btn-toolbar">
+
+                              
+                                <input type="reset" value="Temizle" class="btn btn-primary btn-sm" />
+                                <input type="submit" class="btn btn-primary btn-sm glyphicon glyphicon-user" value="Giriş Yap" />
+                                <a href="@Url.Action("KayitForm")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-record"></i>Kaydol</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    }
+</div>

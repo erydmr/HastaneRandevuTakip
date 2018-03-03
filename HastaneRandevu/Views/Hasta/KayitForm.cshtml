@@ -1,0 +1,71 @@
+﻿@model HastaneRandevu.ViewModels.HastaKayit
+
+@{
+    ViewBag.Title = "Kayıt Formu";
+}
+
+<header>
+    <h1 class="text-center">Hastane Randevu Sistemi</h1>
+</header>
+
+<div class="col-md-6 col-md-offset-4">
+
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="col-md-8">
+                @Html.ValidationSummary()
+                <div class="panel panel-info">
+                    <div class="panel-heading text-center">Asagidaki bilgileri eksiksiz doldurunuz..</div>
+                    <div class="panel-body">
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.AdSoyad)
+                            @Html.TextBoxFor(x => x.AdSoyad, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.TcKimlik)
+                            @Html.TextBoxFor(x => x.TcKimlik, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.DogumTarihi)
+                            @Html.TextBoxFor(x => x.DogumTarihi, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.Email)
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.Tel)
+                            @Html.TextBoxFor(x => x.Tel, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.Cinsiyet)
+                            @Html.TextBoxFor(x => x.Cinsiyet, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group ">
+                            @Html.LabelFor(x => x.Adres)
+                            @Html.TextBoxFor(x => x.Adres, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Sifre)
+                            @Html.PasswordFor(x => x.Sifre, new { @class = "form-control" })
+                        </div>
+
+                        <div class="btn-group">
+                            <input type="reset" value="Temizle" class="btn btn-primary btn-sm" />
+                        </div>
+                        <div class="btn-group">
+                            <input type="submit" value="Kaydol" class="btn btn-primary btn-sm" />
+                        </div>
+                        <div class="btn-group">
+                            <a href="@Url.Action("index")"> Vazgeç</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

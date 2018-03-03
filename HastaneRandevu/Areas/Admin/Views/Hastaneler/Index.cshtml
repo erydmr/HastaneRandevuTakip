@@ -1,0 +1,35 @@
+﻿@model HastaneRandevu.Areas.Admin.ViewModels.HastaneIndex
+@{
+    ViewBag.Title = "Hastaneler";
+}
+<h1>Users</h1>
+<a href="@Url.Action("Yeni")" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i>Yeni Hastane</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>İl</th>
+            <th>İlçe</th>
+            <th>Hastane</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hastane in Model.Hastaneler)
+        {
+            <tr>
+                <td>@hastane.Id</td>
+                <td>-</td>
+                <td>@hastane.IlceID</td> 
+                <td>@hastane.HastaneAdi</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("Duzenle",new { hastane.Id } )" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i>Düzenle</a>
+                        <a href="@Url.Action("Sil",new { hastane.Id } )#" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i>Sil</a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
